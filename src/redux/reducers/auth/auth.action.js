@@ -35,12 +35,13 @@ export const signUp = (userData) => async (dispatch) => {
       data: { credentials: userData },
     });
 
+    window.location.href = "https://zomato-master-gamma.vercel.app/delivery";
+
     localStorage.setItem(
       "zomatoUser",
       JSON.stringify({ token: User.data.token })
     );
 
-    window.location.reload();
 
     return dispatch({ type: SIGN_UP, payload: User.data });
   } catch (error) {
@@ -52,7 +53,7 @@ export const signOut = () => async (dispatch) => {
   try {
     localStorage.removeItem("zomatoUser");
     clearUser();
-    window.location.href = "https://zomato-master-server4.herokuapp.com/delivery";
+    window.location.href = "https://zomato-master-gamma.vercel.app/delivery";
 
     return dispatch({ type: SIGN_OUT, payload: {} });
   } catch (error) {
@@ -65,6 +66,7 @@ export const googleAuth = (token) => async (dispatch) => {
     localStorage.setItem("zomatoUser", JSON.stringify({ token }));
 
     return dispatch({ type: GOOGLE_AUTH, payload: {} });
+    window.location.href = "https://zomato-master-gamma.vercel.app/delivery";
   } catch (error) {
     return dispatch({ type: "ERROR", payload: error });
   }
